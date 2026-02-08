@@ -1,0 +1,25 @@
+version = 0.1
+
+[default.global.parameters]
+region = "ap-south-1"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.validate.parameters]
+lint = true
+
+[default.deploy.parameters]
+stack_name = "krawler-url-shortener"
+resolve_s3 = true
+s3_prefix = "krawler-url-shortener"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+no_fail_on_empty_changeset = true
+parameter_overrides = "BaseUrl=\"\""
+image_repositories = []
+
+[default.local_start_api.parameters]
+port = 3000
+warm_containers = "EAGER"

@@ -1,0 +1,6 @@
+.notes/
+api/node_modules/
+api/.aws-sam/
+api/dist/
+*.log
+*.tsbuildinfo

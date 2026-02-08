@@ -1,0 +1,26 @@
+{
+  "name": "krawler-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-style serverless URL shortener built with AWS SAM",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "sam build",
+    "build:ts": "tsc --noEmit",
+    "test": "npm run test:unit",
+    "test:unit": "vitest run tests/handlers",
+    "test:e2e": "vitest run tests/e2e",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.911.0",
+    "@aws-sdk/lib-dynamodb": "^3.911.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
+    "@types/node": "^22.18.10",
+    "esbuild": "^0.25.11",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

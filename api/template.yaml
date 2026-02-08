@@ -1,0 +1,161 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless URL shortener (AWS SAM + Lambda + DynamoDB)
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 10
+    MemorySize: 256
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref UrlShortenerTable
+        BASE_URL: !Ref BaseUrl
+
+Parameters:
+  BaseUrl:
+    Type: String
+    Default: ""
+    Description: Optional public base URL used to build shortUrl in POST /links responses
+
+Resources:
+  UrlShortenerApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowHeaders:
+          - content-type
+        AllowMethods:
+          - GET
+          - POST
+          - PATCH
+          - DELETE
+          - OPTIONS
+        AllowOrigins:
+          - "*"
+
+  UrlShortenerTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: UrlShortenerTable
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+
+  LinkHandlerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/handlers/link-handler.handler
+      Description: Handles POST/GET/PATCH/DELETE /links routes
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UrlShortenerTable
+      Events:
+        CreateLink:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: POST
+            Path: /links
+        GetLinkMetadata:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: GET
+            Path: /links/{shortCode}
+        UpdateLink:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: PATCH
+            Path: /links/{shortCode}
+        DeleteLink:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: DELETE
+            Path: /links/{shortCode}
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Target: es2020
+        Sourcemap: true
+        Minify: false
+        EntryPoints:
+          - src/handlers/link-handler.ts
+
+  RedirectFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/handlers/redirect.handler
+      Description: Handles GET /{shortCode}
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UrlShortenerTable
+      Events:
+        Redirect:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: GET
+            Path: /{shortCode}
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Target: es2020
+        Sourcemap: true
+        Minify: false
+        EntryPoints:
+          - src/handlers/redirect.ts
+
+  StatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/handlers/stats.handler
+      Description: Handles stats summary and daily endpoints
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UrlShortenerTable
+      Events:
+        GetStatsSummary:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: GET
+            Path: /links/{shortCode}/stats
+        GetStatsDaily:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref UrlShortenerApi
+            Method: GET
+            Path: /links/{shortCode}/stats/daily
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Target: es2020
+        Sourcemap: true
+        Minify: false
+        EntryPoints:
+          - src/handlers/stats.ts
+
+Outputs:
+  ApiBaseUrl:
+    Description: HTTP API base URL
+    Value: !Sub "https://${UrlShortenerApi}.execute-api.${AWS::Region}.amazonaws.com"
+  DynamoTableName:
+    Description: DynamoDB table name
+    Value: !Ref UrlShortenerTable
