@@ -1,4 +1,4 @@
-.PHONY: help bootstrap install api-install ui-install dev dev-api dev-ui test test-e2e build clean
+.PHONY: help bootstrap install api-install ui-install dev dev-api dev-ui test test-e2e build deploy clean
 
 help:
 	@echo "Targets:"
@@ -9,6 +9,7 @@ help:
 	@echo "  make test        # Run API unit tests"
 	@echo "  make test-e2e    # Run API E2E tests (set E2E_BASE_URL)"
 	@echo "  make build       # Build API and UI"
+	@echo "  make deploy      # Deploy API to AWS"
 	@echo "  make clean       # Remove build artifacts and node_modules"
 
 bootstrap: install
@@ -43,6 +44,9 @@ test-e2e:
 build:
 	cd api && sam build
 	npm run build --prefix ui
+
+deploy:
+	cd api && sam deploy
 
 clean:
 	rm -rf api/node_modules ui/node_modules api/.aws-sam ui/dist
