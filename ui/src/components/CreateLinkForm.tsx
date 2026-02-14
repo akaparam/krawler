@@ -16,8 +16,7 @@ type CreateLinkFormProps = {
 };
 
 function getDefaultExpiry(): string {
-  const date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-  return date.toISOString().slice(0, 16);
+  return "";
 }
 
 export function CreateLinkForm({ onCreated }: CreateLinkFormProps): JSX.Element {
