@@ -28,7 +28,7 @@ export function LinkCard({ link, onEdit }: LinkCardProps): JSX.Element {
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <CardTitle className="text-base">/{link.shortCode}</CardTitle>
+            <CardTitle className="text-base text-ink-900 dark:text-ink-100">/{link.shortCode}</CardTitle>
             <p className="muted-text truncate">{link.originalUrl}</p>
           </div>
           <div className="flex items-center gap-2">
@@ -55,7 +55,7 @@ export function LinkCard({ link, onEdit }: LinkCardProps): JSX.Element {
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4 text-sm text-ink-600">
+      <CardContent className="space-y-4 text-sm text-ink-600 dark:text-ink-400">
         <div className="flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-1">
             <Calendar className="h-3.5 w-3.5" />
@@ -66,7 +66,7 @@ export function LinkCard({ link, onEdit }: LinkCardProps): JSX.Element {
             {link.clickCount} clicks
           </span>
           {link.isPasswordProtected ? (
-            <span className="inline-flex items-center gap-1 text-amber-700">
+            <span className="inline-flex items-center gap-1 text-amber-700 dark:text-amber-400">
               <KeyRound className="h-3.5 w-3.5" />
               Protected
             </span>

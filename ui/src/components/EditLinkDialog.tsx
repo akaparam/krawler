@@ -131,7 +131,7 @@ export function EditLinkDialog(): JSX.Element {
             />
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-ink-600">
+          <label className="flex items-center gap-2 text-sm text-ink-600 dark:text-ink-400">
             <input
               type="checkbox"
               checked={removePassword}

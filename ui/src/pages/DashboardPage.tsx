@@ -63,20 +63,20 @@ export default function DashboardPage(): JSX.Element {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Sparkle className="h-4 w-4 text-sky-600" />
+              <Sparkle className="h-4 w-4 text-sky-600 dark:text-sky-400" />
               Activity Feed
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {activity.length === 0 ? (
-              <div className="rounded-xl border border-dashed border-ink-200 bg-ink-50 p-5 text-center text-sm text-ink-500">
+              <div className="rounded-xl border border-dashed border-ink-200 bg-ink-50 p-5 text-center text-sm text-ink-500 dark:border-ink-700 dark:bg-ink-800/50 dark:text-ink-400">
                 Activity appears as soon as links are created and clicked.
               </div>
             ) : (
               activity.map((item) => (
-                <div key={item.id} className="rounded-xl border border-ink-100 bg-white p-3">
-                  <p className="text-sm font-medium text-ink-700">{item.message}</p>
-                  <p className="mt-1 text-xs text-ink-400">{formatDateTime(item.timestamp)}</p>
+                <div key={item.id} className="rounded-xl border border-ink-100 bg-white p-3 dark:border-ink-700 dark:bg-ink-800/50">
+                  <p className="text-sm font-medium text-ink-700 dark:text-ink-200">{item.message}</p>
+                  <p className="mt-1 text-xs text-ink-400 dark:text-ink-500">{formatDateTime(item.timestamp)}</p>
                 </div>
               ))
             )}

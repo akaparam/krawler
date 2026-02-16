@@ -114,7 +114,7 @@ export default function LinkDetailsPage(): JSX.Element {
     return (
       <Card>
         <CardContent className="py-8 text-center">
-          <p className="text-lg font-semibold text-ink-800">Unable to load link</p>
+          <p className="text-lg font-semibold text-ink-800 dark:text-ink-100">Unable to load link</p>
           <p className="muted-text mt-1">This short code may not exist anymore.</p>
           <Button asChild variant="outline" className="mt-4">
             <Link to="/">Back to dashboard</Link>
@@ -140,7 +140,7 @@ export default function LinkDetailsPage(): JSX.Element {
             <p className="muted-text max-w-2xl break-all">{metadata.originalUrl}</p>
             <div className="flex items-center gap-2">
               <Badge variant={status}>{status}</Badge>
-              <span className="text-xs text-ink-500">Created {formatDateTime(metadata.createdAt)}</span>
+              <span className="text-xs text-ink-500 dark:text-ink-400">Created {formatDateTime(metadata.createdAt)}</span>
             </div>
           </div>
 
@@ -162,8 +162,8 @@ export default function LinkDetailsPage(): JSX.Element {
 
         <CardContent className="space-y-4">
           {metadata.isPasswordProtected ? (
-            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-              <p className="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-amber-700">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
+              <p className="mb-2 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-400">
                 <LockKeyhole className="h-4 w-4" />
                 Redirect testing requires password
               </p>

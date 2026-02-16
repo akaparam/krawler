@@ -6,16 +6,27 @@
 
 :root {
   color: #213544;
-  background: radial-gradient(circle at 0% 0%, #e8fbff 0%, #f8fafc 45%, #eef2f6 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+html.dark {
+  color: #e2e8f0;
+}
+
+body {
+  min-height: 100vh;
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #8ca0b5 #eef2f6;
+}
+
+html.dark * {
+  scrollbar-color: #4b5563 #1a202c;
 }
 
 *::-webkit-scrollbar {
@@ -27,8 +38,17 @@
   background: #eef2f6;
 }
 
+html.dark *::-webkit-scrollbar-track {
+  background: #1a202c;
+}
+
 *::-webkit-scrollbar-thumb {
   background: #8ca0b5;
+  border-radius: 999px;
+}
+
+html.dark *::-webkit-scrollbar-thumb {
+  background: #4b5563;
   border-radius: 999px;
 }
 
@@ -41,11 +61,15 @@ body {
     @apply border border-white/60 bg-white/80 backdrop-blur;
   }
 
+  .dark .glass-panel {
+    @apply border-ink-700 bg-ink-900/80 backdrop-blur;
+  }
+
   .page-shell {
     @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
   }
 
   .muted-text {
-    @apply text-sm text-ink-500;
+    @apply text-sm text-ink-500 dark:text-ink-400;
   }
 }

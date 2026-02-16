@@ -32,13 +32,13 @@ export default function ExplorePage(): JSX.Element {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Filter className="h-4 w-4 text-sky-600" />
+            <Filter className="h-4 w-4 text-sky-600 dark:text-sky-400" />
             Global Link Explorer
           </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3 md:grid-cols-3">
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-ink-400" />
+            <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-ink-400 dark:text-ink-500" />
             <Input
               placeholder="Search code or URL"
               value={filters.search}
@@ -52,7 +52,7 @@ export default function ExplorePage(): JSX.Element {
             onChange={(event) =>
               setFilters({ status: event.target.value as "all" | "active" | "expired" | "protected" })
             }
-            className="h-10 rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-700"
+            className="h-10 rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-700 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-100"
           >
             <option value="all">All status</option>
             <option value="active">Active</option>
@@ -74,15 +74,15 @@ export default function ExplorePage(): JSX.Element {
         </CardHeader>
         <CardContent>
           {filtered.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-ink-200 bg-ink-50 p-8 text-center">
-              <p className="text-sm font-semibold text-ink-700">No links match your filters.</p>
+            <div className="rounded-xl border border-dashed border-ink-200 bg-ink-50 p-8 text-center dark:border-ink-700 dark:bg-ink-800/50">
+              <p className="text-sm font-semibold text-ink-700 dark:text-ink-200">No links match your filters.</p>
               <p className="muted-text mt-1">Create links from dashboard and they will appear here.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full min-w-[720px] border-separate border-spacing-y-2 text-sm">
                 <thead>
-                  <tr className="text-left text-xs uppercase tracking-wide text-ink-400">
+                  <tr className="text-left text-xs uppercase tracking-wide text-ink-400 dark:text-ink-500">
                     <th className="px-3">Short Code</th>
                     <th className="px-3">Destination</th>
                     <th className="px-3">Status</th>
@@ -95,14 +95,14 @@ export default function ExplorePage(): JSX.Element {
                   {filtered.map((link) => {
                     const status = getStatusLabel(link);
                     return (
-                      <tr key={link.shortCode} className="rounded-xl bg-white shadow-sm">
-                        <td className="rounded-l-xl px-3 py-3 font-mono text-xs">/{link.shortCode}</td>
-                        <td className="max-w-sm truncate px-3 py-3 text-ink-600">{link.originalUrl}</td>
+                      <tr key={link.shortCode} className="rounded-xl bg-white shadow-sm dark:bg-ink-800/50">
+                        <td className="rounded-l-xl px-3 py-3 font-mono text-xs text-ink-900 dark:text-ink-100">/{link.shortCode}</td>
+                        <td className="max-w-sm truncate px-3 py-3 text-ink-600 dark:text-ink-300">{link.originalUrl}</td>
                         <td className="px-3 py-3">
                           <Badge variant={status}>{status}</Badge>
                         </td>
-                        <td className="px-3 py-3">{link.clickCount}</td>
-                        <td className="px-3 py-3 text-ink-500">{new Date(link.createdAt).toLocaleDateString()}</td>
+                        <td className="px-3 py-3 text-ink-900 dark:text-ink-100">{link.clickCount}</td>
+                        <td className="px-3 py-3 text-ink-500 dark:text-ink-400">{new Date(link.createdAt).toLocaleDateString()}</td>
                         <td className="rounded-r-xl px-3 py-3">
                           <div className="flex items-center gap-2">
                             <Button size="sm" variant="outline" asChild>
@@ -112,7 +112,7 @@ export default function ExplorePage(): JSX.Element {
                               </Link>
                             </Button>
                             {isExpired(link.expiresAt) ? (
-                              <span className="text-xs text-amber-700">expired</span>
+                              <span className="text-xs text-amber-700 dark:text-amber-400">expired</span>
                             ) : null}
                           </div>
                         </td>

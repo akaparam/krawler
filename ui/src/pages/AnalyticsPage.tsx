@@ -75,7 +75,7 @@ export default function AnalyticsPage(): JSX.Element {
         <Card>
           <CardHeader>
             <CardTitle className="inline-flex items-center gap-2">
-              <LineChartIcon className="h-4 w-4 text-sky-600" />
+              <LineChartIcon className="h-4 w-4 text-sky-600 dark:text-sky-400" />
               Growth Trend
             </CardTitle>
           </CardHeader>
@@ -85,7 +85,7 @@ export default function AnalyticsPage(): JSX.Element {
         <Card>
           <CardHeader>
             <CardTitle className="inline-flex items-center gap-2">
-              <Flame className="h-4 w-4 text-amber-500" />
+              <Flame className="h-4 w-4 text-amber-500 dark:text-amber-400" />
               Daily Distribution
             </CardTitle>
           </CardHeader>
@@ -99,7 +99,7 @@ export default function AnalyticsPage(): JSX.Element {
             <CardTitle>Top Performing Moment</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-base font-semibold text-ink-800">{topText}</p>
+            <p className="text-base font-semibold text-ink-800 dark:text-ink-100">{topText}</p>
             <p className="muted-text mt-1">Derived from the available daily click breakdown.</p>
           </CardContent>
         </Card>
@@ -109,7 +109,7 @@ export default function AnalyticsPage(): JSX.Element {
             <CardTitle>Growth Signal</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-base font-semibold text-ink-800">{insights.growthText}</p>
+            <p className="text-base font-semibold text-ink-800 dark:text-ink-100">{insights.growthText}</p>
             <p className="muted-text mt-1">Quick indicator for campaign momentum.</p>
           </CardContent>
         </Card>
@@ -117,7 +117,7 @@ export default function AnalyticsPage(): JSX.Element {
         <Card>
           <CardHeader>
             <CardTitle className="inline-flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-sky-600" />
+              <Trophy className="h-4 w-4 text-sky-600 dark:text-sky-400" />
               Click Spike
             </CardTitle>
           </CardHeader>

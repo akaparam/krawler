@@ -89,7 +89,7 @@ export function CreateLinkForm({ onCreated }: CreateLinkFormProps): JSX.Element 
               value={url}
               onChange={(event) => setUrl(event.target.value)}
               placeholder="https://example.com/campaign"
-              className="border-white/20 bg-white/10 text-white placeholder:text-ink-200"
+              className="border-white/20 bg-white/10 text-white placeholder:text-ink-200 dark:border-ink-600 dark:bg-ink-800/50 dark:text-ink-100 dark:placeholder:text-ink-400"
             />
           </div>
 
@@ -103,7 +103,7 @@ export function CreateLinkForm({ onCreated }: CreateLinkFormProps): JSX.Element 
                 value={customSlug}
                 onChange={(event) => setCustomSlug(event.target.value)}
                 placeholder="spring-launch"
-                className="border-white/20 bg-white/10 text-white placeholder:text-ink-200"
+                className="border-white/20 bg-white/10 text-white placeholder:text-ink-200 dark:border-ink-600 dark:bg-ink-800/50 dark:text-ink-100 dark:placeholder:text-ink-400"
               />
             </div>
             <div className="grid gap-2">
@@ -115,7 +115,7 @@ export function CreateLinkForm({ onCreated }: CreateLinkFormProps): JSX.Element 
                 type="datetime-local"
                 value={expiresAt}
                 onChange={(event) => setExpiresAt(event.target.value)}
-                className="border-white/20 bg-white/10 text-white"
+                className="border-white/20 bg-white/10 text-white dark:border-ink-600 dark:bg-ink-800/50 dark:text-ink-100"
               />
             </div>
             <div className="grid gap-2">
@@ -128,7 +128,7 @@ export function CreateLinkForm({ onCreated }: CreateLinkFormProps): JSX.Element 
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder="optional"
-                className="border-white/20 bg-white/10 text-white placeholder:text-ink-200"
+                className="border-white/20 bg-white/10 text-white placeholder:text-ink-200 dark:border-ink-600 dark:bg-ink-800/50 dark:text-ink-100 dark:placeholder:text-ink-400"
               />
             </div>
           </div>
