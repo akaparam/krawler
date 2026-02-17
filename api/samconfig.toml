@@ -11,9 +11,9 @@ parallel = true
 lint = true
 
 [default.deploy.parameters]
-stack_name = "krawler-url-shortener"
+stack_name = "krawler-api"
 resolve_s3 = true
-s3_prefix = "krawler-url-shortener"
+s3_prefix = "krawler-api"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
 no_fail_on_empty_changeset = true
