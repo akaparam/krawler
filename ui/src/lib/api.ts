@@ -8,14 +8,14 @@ import type {
   UpdateLinkRequest
 } from "@/types/api";
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(
+const API_BASE_URL = (import.meta.env.KRAWLER_API_BASE_URL as string | undefined)?.replace(
   /\/+$/,
   ""
 );
 
 function resolveUrl(path: string): string {
   if (!API_BASE_URL) {
-    throw new Error("Missing VITE_API_BASE_URL. Set it in ui/.env");
+    throw new Error("Missing KRAWLER_API_BASE_URL. Set it in ui/.env");
   }
 
   return `${API_BASE_URL}${path}`;

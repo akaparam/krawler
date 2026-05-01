@@ -37,7 +37,7 @@ make bootstrap
 
 ```bash
 # ui/.env
-VITE_API_BASE_URL=http://127.0.0.1:3000
+KRAWLER_API_BASE_URL=http://127.0.0.1:3000
 ```
 
 3. Run both API + UI locally:
@@ -47,7 +47,7 @@ make dev
 ```
 
 - API: `http://127.0.0.1:3000`
-- UI: Vite default (`http://127.0.0.1:5173`)
+- UI: `http://127.0.0.1:5173`
 
 ## Common Commands
 
